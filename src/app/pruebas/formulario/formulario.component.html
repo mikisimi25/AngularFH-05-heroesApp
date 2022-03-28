@@ -1,0 +1,23 @@
+<!-- <section class="example-section" [formGroup]="form" (input)="haha()">
+  <h4>Select your toppings:</h4>
+  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+  <p *ngFor="let sticker of stickers">
+    <mat-checkbox formControlName="pepperoni" value="aaa">Pepperoni</mat-checkbox>
+  </p>
+  <button mat-raised-button color="primary">Primary</button>
+</section> -->
+
+{{form.value | json}}
+
+<table id="input-form" >
+  <tr *ngFor="let column of columns;let columnIndex = index">
+    <th *ngFor="let rows of rows;let rowIndex = index">
+      <input type="checkbox" [id]='columnIndex + "" + rowIndex' name="type" [value]='columnIndex + "" + rowIndex' (click)="cambio()" />
+    </th>
+  </tr>
+</table>
+
+<!--
+<form id="input-form" role="form" action="" class="margin-top-fortypx">
+  <input type="checkbox" id="checkbox1" name="type" value="Option #1" checked="true" (click)="cambio()" />
+</form> -->
