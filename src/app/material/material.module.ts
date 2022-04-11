@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   exports: [
@@ -24,7 +25,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatGridListModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatRadioModule
   ],
 })
 export class MaterialModule {}

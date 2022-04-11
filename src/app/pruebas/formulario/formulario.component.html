@@ -1,23 +1,61 @@
-<!-- <section class="example-section" [formGroup]="form" (input)="haha()">
-  <h4>Select your toppings:</h4>
-  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-  <p *ngFor="let sticker of stickers">
-    <mat-checkbox formControlName="pepperoni" value="aaa">Pepperoni</mat-checkbox>
-  </p>
-  <button mat-raised-button color="primary">Primary</button>
-</section> -->
+<div class="container">
+  <mat-card cols="">
+    <form action="" [formGroup]="stickerForm" autocomplete="off" (ngSubmit)="createPdf()">
+        <!-- Offer -->
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Offer</mat-label>
+            <input matInput required formControlName="offer">
+            <mat-error *ngFor="let error of getErrorMessages('element')">{{error}}</mat-error>
+          </mat-form-field>
+        </p>
 
-{{form.value | json}}
+        <!-- Element -->
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Element</mat-label>
+            <input type="number" matInput required formControlName="element">
+            <mat-error *ngFor="let error of getErrorMessages('element')">{{error}}</mat-error>
+          </mat-form-field>
+        </p>
 
-<table id="input-form" >
-  <tr *ngFor="let column of columns;let columnIndex = index">
-    <th *ngFor="let rows of rows;let rowIndex = index">
-      <input type="checkbox" [id]='columnIndex + "" + rowIndex' name="type" [value]='columnIndex + "" + rowIndex' (click)="cambio()" />
-    </th>
-  </tr>
-</table>
+        <!-- Quantity -->
+        <p>
+          <mat-form-field appearance="fill">
+            <mat-label>Quantity</mat-label>
+            <input type="number" matInput required formControlName="quantity" (input)="quantityChange()">
 
-<!--
-<form id="input-form" role="form" action="" class="margin-top-fortypx">
-  <input type="checkbox" id="checkbox1" name="type" value="Option #1" checked="true" (click)="cambio()" />
-</form> -->
+            <mat-error *ngFor="let error of getErrorMessages('quantity')">{{error}}</mat-error>
+          </mat-form-field>
+        </p>
+
+        <label id="example-radio-group-label">How many pages?</label>
+        <p>
+          <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+            formControlName="page"
+            >
+              <p>
+                <mat-radio-button value="one" (input)="changeOption()">One</mat-radio-button>
+              </p>
+              <p>
+                <mat-radio-button value="many" (input)="changeOption()" [checked]="true">More than one</mat-radio-button>
+              </p>
+          </mat-radio-group>
+        </p>
+
+        <button mat-raised-button color="primary" [disabled]="stickerForm.invalid">Create PDF</button>
+      </form>
+  </mat-card>
+
+  <mat-card>
+    <table id="input-form">
+      <tr *ngFor="let row of rows;let rowIndex = index">
+        <th *ngFor="let column of columns;let columnIndex = index">
+          <mat-checkbox (input)="selectPlace()" [value]='{column: columnIndex,row: rowIndex} | json' [checked]="pruebaCheck" ></mat-checkbox>
+        </th>
+      </tr>
+    </table>
+  </mat-card>
+</div>
